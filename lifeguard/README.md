@@ -1,6 +1,6 @@
-# lifeguard
+# Lifeguard
 
-A new Flutter project.
+This is a unique university project designed to simplify the lives of ordinary rescuers))
 
 ## Getting Started
 
