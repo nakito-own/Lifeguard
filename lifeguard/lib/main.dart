@@ -4,5 +4,5 @@ import 'package:lifeguard/Windows/AuthorizationWindow.dart';
 import 'Windows/PersonalAccountWindow.dart';
 
 void main() {
-  runApp(Authorization());
+  runApp(PersonalAccount());
 }
