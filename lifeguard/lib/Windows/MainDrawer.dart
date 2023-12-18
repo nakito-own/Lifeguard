@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'AuthorizationWindow.dart';
+
 class DrawlerButton extends StatelessWidget {
   final String buttonText;
   final IconData iconData;
@@ -12,7 +14,7 @@ class DrawlerButton extends StatelessWidget {
     return Container(
       width: 120.0,
       height: 50.0,
-      margin: EdgeInsets.all(12),
+      margin: const EdgeInsets.all(12),
       child: ElevatedButton(
         onPressed: () {
           // Обработчик нажатия
@@ -30,10 +32,10 @@ class DrawlerButton extends StatelessWidget {
               iconData,
               color: Colors.white,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               buttonText,
-              style: TextStyle(color: Colors.white, fontSize: 17),
+              style: const TextStyle(color: Colors.white, fontSize: 17),
             ),
           ],
         ),
@@ -42,8 +44,29 @@ class DrawlerButton extends StatelessWidget {
   }
 }
 
+class RedTextButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Обработка нажатия кнопки, например, переход к окну авторизации
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Authorization()),
+        );
+      },
+      child: const Text(
+        'Выйти',
+        style: TextStyle(
+          color: Colors.red, // Красный цвет текста
+          fontSize: 17.0,
+          decoration: TextDecoration.underline, // Подчеркивание текста
+        ),
+      ),
+    );
+  }
+}
 
-class MainDrawer extends StatelessWidget{
+class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -55,56 +78,58 @@ class MainDrawer extends StatelessWidget{
             colors: [Color(0xFF312D2D), Color(0xFF171010)],
           ),
         ),
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: const [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xFF312D2D), Color(0xFF171010)],
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xFF312D2D), Color(0xFF171010)],
+                ),
+              ),
+              child: Text(
+                'Профиль',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
               ),
             ),
-            child: Text(
-              'Профиль',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+            const DrawlerButton(
+              buttonText: 'Уведомления',
+              iconData: Icons.notifications,
             ),
-          ),
-          DrawlerButton(
-            buttonText: 'Уведомления',
-            iconData: Icons.notifications,
-          ),
-          DrawlerButton(
-            buttonText: 'Смены',
-            iconData: Icons.flag,
-          ),
-          DrawlerButton(
-            buttonText: 'Мероприятия',
-            iconData: Icons.calendar_month,
-          ),
-          DrawlerButton(
-            buttonText: 'Методички',
-            iconData: Icons.book,
-          ),
-          DrawlerButton(
-            buttonText: 'Оборудование',
-            iconData: Icons.handyman,
-          ),
-          DrawlerButton(
-            buttonText: 'Автомобили',
-            iconData: Icons.place,
-          ),
-          DrawlerButton(
-            buttonText: 'Сотрудники',
-            iconData: Icons.person,
-          ),
-        ],
+            const DrawlerButton(
+              buttonText: 'Смены',
+              iconData: Icons.flag,
+            ),
+            const DrawlerButton(
+              buttonText: 'Мероприятия',
+              iconData: Icons.calendar_month,
+            ),
+            const DrawlerButton(
+              buttonText: 'Методички',
+              iconData: Icons.book,
+            ),
+            const DrawlerButton(
+              buttonText: 'Оборудование',
+              iconData: Icons.handyman,
+            ),
+            const DrawlerButton(
+              buttonText: 'Автомобили',
+              iconData: Icons.place,
+            ),
+            const DrawlerButton(
+              buttonText: 'Сотрудники',
+              iconData: Icons.person,
+            ),
+            const SizedBox(height: 30), // Добавляем отступ перед кнопкой
+            Center(child: RedTextButton()), // Убираем const, так как не все элементы списка являются константами
+          ],
+        ),
       ),
-      )
     );
   }
 }
