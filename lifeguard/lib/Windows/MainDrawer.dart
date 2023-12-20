@@ -50,9 +50,9 @@ class RedTextButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Обработка нажатия кнопки, например, переход к окну авторизации
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => Authorization()),
-        );
+        //Navigator.of(context).pushReplacement(
+          //MaterialPageRoute(builder: (context) => Authorization()),
+        //);
       },
       child: const Text(
         'Выйти',

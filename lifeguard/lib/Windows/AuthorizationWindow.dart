@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:lifeguard/Windows/PersonalAccountWindow.dart';
 class Authorization extends StatefulWidget {
   @override
@@ -130,7 +130,7 @@ class _AuthorizationState extends State<Authorization> {
         });
         if (success) {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => PersonalAccount()),
+            MaterialPageRoute(builder: (context) => PersonalAccount(user: null,)),
           );
         } else {
           print('Ошибка авторизации');
@@ -144,4 +144,4 @@ class _AuthorizationState extends State<Authorization> {
     return true;
   }
 }
-
+*/
