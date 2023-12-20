@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundland"
+    tools:context=".MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/listFragment"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:name="com.example.myapplication8.ListFragment"/>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/detailFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/listFragment"
+        android:name="com.example.myapplication8.DetailFragment"/>
+</RelativeLayout>
