@@ -110,6 +110,53 @@ class DefaultApi {
     return null;
   }
 
+  /// Performs an HTTP 'POST /inventory' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [CreateInventoryItemRequest] body:
+  Future<Response> createInventoryItemWithHttpInfo({ CreateInventoryItemRequest? body, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/inventory';
+
+    // ignore: prefer_final_locals
+    Object? postBody = body;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [CreateInventoryItemRequest] body:
+  Future<int?> createInventoryItem({ CreateInventoryItemRequest? body, }) async {
+    final response = await createInventoryItemWithHttpInfo( body: body, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'int',) as int;
+    
+    }
+    return null;
+  }
+
   /// Performs an HTTP 'POST /users' operation and returns the [Response].
   /// Parameters:
   ///
@@ -152,6 +199,54 @@ class DefaultApi {
   /// * [UserDesc] data:
   Future<int?> createUser({ String? session, UserDesc? data, }) async {
     final response = await createUserWithHttpInfo( session: session, data: data, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'int',) as int;
+    
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'DELETE /inventory/{id}' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [int] id (required):
+  Future<Response> deleteInventoryItemWithHttpInfo(int id,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/inventory/{id}'
+      .replaceAll('{id}', id.toString());
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [int] id (required):
+  Future<int?> deleteInventoryItem(int id,) async {
+    final response = await deleteInventoryItemWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -309,6 +404,98 @@ class DefaultApi {
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCrew200Response',) as GetCrew200Response;
     
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'GET /inventory/{id}' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [int] id (required):
+  Future<Response> getInventoryItemWithHttpInfo(int id,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/inventory/{id}'
+      .replaceAll('{id}', id.toString());
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [int] id (required):
+  Future<GetInventoryItem200Response?> getInventoryItem(int id,) async {
+    final response = await getInventoryItemWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetInventoryItem200Response',) as GetInventoryItem200Response;
+    
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'GET /inventory/types' operation and returns the [Response].
+  Future<Response> getInventoryTypesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/inventory/types';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  Future<List<GetInventoryTypes200ResponseInner>?> getInventoryTypes() async {
+    final response = await getInventoryTypesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(responseBody, 'List<GetInventoryTypes200ResponseInner>') as List)
+        .cast<GetInventoryTypes200ResponseInner>()
+        .toList(growable: false);
+
     }
     return null;
   }
@@ -477,6 +664,67 @@ class DefaultApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<ListCrew200ResponseInner>') as List)
         .cast<ListCrew200ResponseInner>()
+        .toList(growable: false);
+
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'GET /inventory' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [int] count:
+  ///
+  /// * [int] skip:
+  Future<Response> listInventoryItemsWithHttpInfo({ int? count, int? skip, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/inventory';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (count != null) {
+      queryParams.addAll(_queryParams('', 'count', count));
+    }
+    if (skip != null) {
+      queryParams.addAll(_queryParams('', 'skip', skip));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [int] count:
+  ///
+  /// * [int] skip:
+  Future<List<ListInventoryItems200ResponseInner>?> listInventoryItems({ int? count, int? skip, }) async {
+    final response = await listInventoryItemsWithHttpInfo( count: count, skip: skip, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(responseBody, 'List<ListInventoryItems200ResponseInner>') as List)
+        .cast<ListInventoryItems200ResponseInner>()
         .toList(growable: false);
 
     }
@@ -693,6 +941,58 @@ class DefaultApi {
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
+  }
+
+  /// Performs an HTTP 'POST /inventory/{id}' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [int] id (required):
+  ///
+  /// * [UpdateInventoryRequest] body:
+  Future<Response> updateInventoryWithHttpInfo(int id, { UpdateInventoryRequest? body, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/inventory/{id}'
+      .replaceAll('{id}', id.toString());
+
+    // ignore: prefer_final_locals
+    Object? postBody = body;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [int] id (required):
+  ///
+  /// * [UpdateInventoryRequest] body:
+  Future<int?> updateInventory(int id, { UpdateInventoryRequest? body, }) async {
+    final response = await updateInventoryWithHttpInfo(id,  body: body, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'int',) as int;
+    
+    }
+    return null;
   }
 
   /// Performs an HTTP 'POST /users/{id}' operation and returns the [Response].

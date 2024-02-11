@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lifeguard/Windows/AuthorizationWindow.dart';
+import 'package:lifeguard/Windows/AuthorizationScreen.dart';
+import 'package:lifeguard/Windows/PersonalAccountScreen.dart';
+
+import 'apicon/api.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Authorization(),
-    );
-  }
+  runApp(MaterialApp(
+    home: Authorization(),
+  )
+  );
 }

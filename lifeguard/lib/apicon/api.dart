@@ -32,18 +32,23 @@ part 'api/default_api.dart';
 
 part 'model/create_call_request.dart';
 part 'model/create_crew_request.dart';
+part 'model/create_inventory_item_request.dart';
 part 'model/error.dart';
 part 'model/fired_user200_response.dart';
 part 'model/fired_user_request.dart';
 part 'model/get_call200_response.dart';
 part 'model/get_crew200_response.dart';
+part 'model/get_inventory_item200_response.dart';
+part 'model/get_inventory_types200_response_inner.dart';
 part 'model/get_user200_response.dart';
 part 'model/list_call200_response_inner.dart';
 part 'model/list_crew200_response_inner.dart';
+part 'model/list_inventory_items200_response_inner.dart';
 part 'model/list_users200_response_inner.dart';
 part 'model/login_request.dart';
 part 'model/update_call_request.dart';
 part 'model/update_crew_request.dart';
+part 'model/update_inventory_request.dart';
 part 'model/update_user_request.dart';
 part 'model/user_desc.dart';
 

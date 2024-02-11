@@ -186,6 +186,8 @@ class ApiClient {
           return CreateCallRequest.fromJson(value);
         case 'CreateCrewRequest':
           return CreateCrewRequest.fromJson(value);
+        case 'CreateInventoryItemRequest':
+          return CreateInventoryItemRequest.fromJson(value);
         case 'Error':
           return Error.fromJson(value);
         case 'FiredUser200Response':
@@ -196,12 +198,18 @@ class ApiClient {
           return GetCall200Response.fromJson(value);
         case 'GetCrew200Response':
           return GetCrew200Response.fromJson(value);
+        case 'GetInventoryItem200Response':
+          return GetInventoryItem200Response.fromJson(value);
+        case 'GetInventoryTypes200ResponseInner':
+          return GetInventoryTypes200ResponseInner.fromJson(value);
         case 'GetUser200Response':
           return GetUser200Response.fromJson(value);
         case 'ListCall200ResponseInner':
           return ListCall200ResponseInner.fromJson(value);
         case 'ListCrew200ResponseInner':
           return ListCrew200ResponseInner.fromJson(value);
+        case 'ListInventoryItems200ResponseInner':
+          return ListInventoryItems200ResponseInner.fromJson(value);
         case 'ListUsers200ResponseInner':
           return ListUsers200ResponseInner.fromJson(value);
         case 'LoginRequest':
@@ -210,6 +218,8 @@ class ApiClient {
           return UpdateCallRequest.fromJson(value);
         case 'UpdateCrewRequest':
           return UpdateCrewRequest.fromJson(value);
+        case 'UpdateInventoryRequest':
+          return UpdateInventoryRequest.fromJson(value);
         case 'UpdateUserRequest':
           return UpdateUserRequest.fromJson(value);
         case 'UserDesc':

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lifeguard/Windows/PersonalAccountWindow.dart';
+import 'package:lifeguard/Windows/PersonalAccountScreen.dart';
+
+import '../apicon/api.dart';
 class Authorization extends StatefulWidget {
   @override
   _AuthorizationState createState() => _AuthorizationState();
@@ -7,8 +9,9 @@ class Authorization extends StatefulWidget {
 
 class _AuthorizationState extends State<Authorization> {
 
-  final TextEditingController loginController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController login = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
   bool isLoading = false;
 
   @override
@@ -49,7 +52,7 @@ class _AuthorizationState extends State<Authorization> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: TextField(
-                      controller: loginController,
+                      controller: login,
                       style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         labelText: 'Логин',
@@ -78,7 +81,7 @@ class _AuthorizationState extends State<Authorization> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: TextField(
-                      controller: passwordController,
+                      controller: password,
                       style: const TextStyle(color: Colors.white),
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -122,15 +125,28 @@ class _AuthorizationState extends State<Authorization> {
   }
 
   void _loginButtonPressed(BuildContext context) {
+
+    final user = GetUser200Response(
+      id: 1,
+      name: 'Илья',
+      surname: 'Беличев',
+      patronymic: 'Никитович',
+      phone: '88005553535',
+      vk: 'https://vk.com/n_bakashvili',
+      tg: 'tggggg',
+      email: 'ilich@gmail.com',
+      nick: 'Инструктор',
+    );
+
     setState(() {
       isLoading = true;
-      _performLogin(loginController.text, passwordController.text).then((success) {
+      _performLogin(login.text, password.text).then((success) {
         setState(() {
           isLoading = false;
         });
         if (success) {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => PersonalAccount()),
+            MaterialPageRoute(builder: (context) => PersonalAccount(user: user,)),
           );
         } else {
           print('Ошибка авторизации');
